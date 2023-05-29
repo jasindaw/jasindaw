@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, left=3.00cm, right=3.00cm, bottom=3.00cm, top=2.00cm]{geometry}
+\usepackage{authblk}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath} %bikin matriks
+\usepackage{tabularray} %bikin matriks
+\UseTblrLibrary{amsmath} %bikinmatriks
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\title{\textbf{Tugas Fisika Komputasi II: Optimasi Terkonstrain}}
+\author{Jasinda Wijdannysa (5001201147)}
+\affil{Departemen Fisika, Institut Teknologi Sepuluh Nopember}
+\date{May 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Soal}
+\begin{centering}
+Diberikan fungsi sebagai berikut:
+\[f=2x+3y-x^3-2y^2\]
+dengan konstrain sebagai berikut:
+\begin{enumerate}[label=(\alph*)] \centering
+    \item \(x+3y-\frac{x^2}{2} \le \frac{11}{2}\)
+    \item \(5x+2y+\frac{x^2}{10} \le 10\)
+\end{enumerate}
+
+untuk \(x \ge 0,\ y \ge 0\)
+
+\end{centering}
+
+\section*{Penyelesaian}
+Konstrain yang awalnya berbentuk pertidaksamaan, perlu diubah menjadi persamaan dengan menambahkan variabel \(\theta_1^2\) pada konstrain (a) dan \(\theta_2^2\) pada konstrain (b). Maka, konstrain (a) dan (b) akan menjadi:
+
+\begin{enumerate}[label=(\alph*)]
+\centering
+    \item \(\theta_1^2+x+3y-\frac{x^2}{2} - \frac{11}{2}=0\)
+    \item \(\theta_2^2+5x+2y+\frac{x^2}{10} - 10=0\)
+\end{enumerate}
+Selanjutnya, konstrain yang telah diubah menjadi persamaan di atas akan digunakan untuk menuliskan persamaan berbentuk lagrangian dengan fungsi yang telah disebutkan sebelumnya.
+\[\mathcal{L}=(2x+3y-x^3-2y^2)+\lambda_1(\theta_1^2+x+3y-\frac{x^2}{2} - \frac{11}{2})+\lambda_2(\theta_2^2+5x+2y+\frac{x^2}{10} - 10)=0\]
+Terdapat 6 parameter pada persamaan lagrangian di atas, yaitu \(\ x,\ \ y,\ \lambda_1,\ \lambda_2,\ \theta_1,\ \) dan \(\ \theta_2\). Untuk mendapatkan nilai keenam parameter tersebut, turunan pertama dari \(\mathcal{L}\) terhadap masing-masing parameter harus bernilai 0.
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial x}=(2-3x^2)+\lambda_1(1-x)+\lambda_2(5+\frac{x}{5})=0
+\end{equation}
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial y}=(3-4y)+\lambda_1(3)+\lambda_2(2)=0
+\end{equation}
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \lambda_1}=\theta_1^2+x+3y-\frac{x^2}{2}-\frac{11}{2}=0
+\end{equation}
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \lambda_2}=\theta_2^2+5x+2y+\frac{x^2}{10}-10=0
+\end{equation}
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \theta_1}=2 \lambda_1 \theta_1=0
+\end{equation}
+\begin{equation}
+    \frac{\partial \mathcal{L}}{\partial \theta_2}=2 \lambda_2 \theta_2=0
+\end{equation}
+\\
+Dari keenam persamaan di atas, maka didapatkan 4 kasus untuk penyelesaian optimasi ini, yaitu sebagai berikut.
+
+\begin{center}
+\begin{tabular}{c|c}
+     \textbf{Kasus 1}; \(\ \theta_1=\theta_2=0\) &  \textbf{Kasus 3}; \(\ \lambda_1=\theta_2=0\)\\
+     \\
+     \textbf{Kasus 2}; \(\ \theta_1=\lambda_2=0\) &  \textbf{Kasus 4}; \(\lambda_1=\lambda_2=0\)
+\end{tabular}
+\end{center}
+\bigskip
+Keempat kasus tersebut dapat dibuat matriks solusi sebagai berikut:
+\begin{enumerate}
+    \item \textbf{Kasus 1}
+    \subitem 
+    \begin{displaymath}
+    f=
+    \begin{pmatrix}
+    (2-3x^2)+\lambda_1(1-x)+\lambda_2(5+\frac{x}{5})\\
+    (3-4y)+\lambda_1(3)+\lambda_2(2)\\
+    x+3y-\frac{x^2}{2}-\frac{11}{2}\\
+    5x+2y+\frac{x^2}{10}-10
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\y\\ \lambda_1 \\ \lambda_2
+    \end{pmatrix}=
+    \begin{pmatrix}
+        0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+    \end{displaymath}
+    
+    \item \textbf{Kasus 2}
+    \subitem 
+    \begin{displaymath}
+    f=
+    \begin{pmatrix}
+    (2-3x^2)+\lambda_1(1-x)\\
+    (3-4y)+\lambda_1(3)\\
+    x+3y-\frac{x^2}{2}-\frac{11}{2}\\
+    \ \theta_2^2+5x+2y+\frac{x^2}{10}-10 \
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\y\\ \lambda_1 \\ \lambda_2
+    \end{pmatrix}=
+    \begin{pmatrix}
+        0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+    \end{displaymath}
+    
+    \item \textbf{Kasus 3}
+    \subitem
+    \begin{displaymath}
+    f=
+    \begin{pmatrix}
+    (2-3x^2)+\lambda_2(5+\frac{x}{5})\\
+    (3-4y)+\lambda_2(2)\\
+    \theta_1^2+x+3y-\frac{x^2}{2}-\frac{11}{2}\\
+    5x+2y+\frac{x^2}{10}-10
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\y\\ \lambda_1 \\ \lambda_2
+    \end{pmatrix}=
+    \begin{pmatrix}
+        0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+    \end{displaymath}
+    
+    \item \textbf{Kasus 4}
+    \subitem
+    \begin{displaymath}
+    f=
+    \begin{pmatrix}
+    (2-3x^2)\\
+    (3-4y)\\
+    \theta_1^2+x+3y-\frac{x^2}{2}-\frac{11}{2}\\
+    \theta_2^2+5x+2y+\frac{x^2}{10}-10
+    \end{pmatrix}
+    \begin{pmatrix}
+        x\\y\\ \lambda_1 \\ \lambda_2
+    \end{pmatrix}=
+    \begin{pmatrix}
+        0 \\ 0 \\ 0 \\ 0
+    \end{pmatrix}
+    \end{displaymath}
+    
+\end{enumerate}
+\bigskip
+Dari keempat matriks solusi tersebut, dapat dibuat sebuah \textit{function} pada Matlab yang berisi fungsi matriks solusi tersebut untuk keempat kasus.
+\begin{lstlisting}
+    function f=funcjob(X)
+    %case 1
+    %f=[(2-3*X(1)^2+X(3)*(1-X(1))+X(4)*(5+X(1)/5)); (3-4*X(2)+3*X(3)+2*X(4)); (X(1)+3*X(2)-X(1).^2/2-5.5); (5*X(1)+2*X(2)+X(1).^2/10-10)];
+
+    %case 2
+    %f=[(2-3*X(1)^2+X(3)*(1-X(1))); (3-4*X(2)+3*X(3)); (X(1)+3*X(2)-X(1).^2/2-5.5); (X(4)+5*X(1)+2*X(2)+X(1).^2/10-10)];
+
+    %case 3
+    %f=[(2-3*X(1)^2+X(4)*(5+X(1)/5)); (3-4*X(2)+2*X(4)); (X(3)+X(1)+3*X(2)-X(1).^2/2-5.5); (5*X(1)+2*X(2)+X(1).^2/10-10)];
+
+    %case 4
+    %f=[(2-3*X(1)^2); (3-4*X(2)); (X(3)+X(1)+3*X(2)-X(1).^2/2-5.5); (X(4)+5*X(1)+2*X(2)+X(1).^2/10-10)];
+    end
+\end{lstlisting}
+\textit{Function} di atas dapat disimpan dengan ekstensi Matlab dengan nama "funcjob.m" dan \textit{function} ini dapat digunakan pada \textit{function} yang lain atau file Matlab yang lain untuk menjalankan suatu program.
+
+\section*{Program pada Matlab}
+Untuk menjalankan program dan mencari solusi parameter-parameter dari optimasi konstrain sebelumnya, maka dibuat sebuah program matlab sebagai berikut.
+
+\begin{lstlisting}
+clc; close all; clear all;
+%initial
+X(1,:)=[1 1 1 1]';
+niter=30;tol=1e-6;
+
+for ii=1:niter-1
+    [f,dp]=jacobian(X(ii,:));
+    dX=inv(dp)*f;
+    X(ii+1,:)=X(ii,:)'-dX;
+    fprintf('Iterasion=%i  solusi=%.4f  \n',ii,X(ii+1))
+    if abs(X(ii+1,:)-X(ii,:))<tol
+        r=X(ii+1,:);
+        disp('Solusi Konvergence')
+        break
+    end
+end
+
+x=r(1); y=r(2); lambda_1=r(3); lambda_2=r(4);
+f=2*x+3*y-x^3-2*y^2;
+disp('Case 1')
+disp(['x=' num2str(x)  ',y=' num2str(y), ',f=' num2str(f)])
+disp(['lambda_1=' num2str(lambda_1), ',lambda_2=' num2str(lambda_2)])
+\end{lstlisting}
+\bigskip
+Untuk menjalankan program di atas, diperlukan sebuah \textit{function} bernama "jacobian.m", yang dapat dituliskan pada program Matlab sebagai berikut.
+\begin{lstlisting}
+function [f0,jac]=jacobian(x)
+h=1.0e-4;
+n=length(x);
+f0=funcobj(x);
+jac=zeros(n,n);
+
+for ii=1:n
+    temp=x(ii);
+    x(ii)=temp+h;
+    f1=funcobj(x);
+    x(ii)=temp;
+    jac(:,ii)=(f1-f0)/h;
+end
+\end{lstlisting}
+\textit{Function} jacobian ini akan berfungsi ketika \textit{function} funcjob telah dituliskan.
+
+\section*{Hasil Run Program Matlab}
+Untuk keempat kasus yang berbeda, maka kita dapat menggunakan persamaan f pada \textit{function} funcjob yang berbeda-beda pula sesuai dengan kasus yang ingin diselesaikan.
+
+\subsection*{Kasus 1; \(\ \theta_1=\theta_2=0\)}
+\begin{lstlisting}
+Iterasion=1  solusi=1.3013  
+Iterasion=2  solusi=1.2941  
+Iterasion=3  solusi=1.2941  
+Iterasion=4  solusi=1.2941  
+Solusi Konvergence
+Case 1
+x=1.2941,y=1.6811,f=-0.18777
+lambda_1=0.82726,lambda_2=0.62127
+\end{lstlisting}
+\subsection*{Kasus 2; \(\ \theta_1=\lambda_2=0\)}
+\begin{lstlisting}
+Iterasion=1  solusi=0.8571  
+Iterasion=2  solusi=0.8526  
+Iterasion=3  solusi=0.8526  
+Iterasion=4  solusi=0.8526  
+Solusi Konvergence
+Case 2
+x=0.85261,y=1.6703,f=0.51656
+lambda_1=1.227,theta_2=2.3237
+\end{lstlisting}
+\subsection*{Kasus 3; \(\ \lambda_1=\theta_2=0\)}
+\begin{lstlisting}
+Iterasion=1  solusi=1.5079  
+Iterasion=2  solusi=1.4826  
+Iterasion=3  solusi=1.4826  
+Iterasion=4  solusi=1.4826  
+Solusi Konvergence
+Case 3
+x=1.4826,y=1.1837,f=0.45528
+theta_1=1.5654,lambda_2=0.86737
+\end{lstlisting}
+\subsection*{Kasus 4; \(\lambda_1=\lambda_2=0\)}
+\begin{lstlisting}
+Iterasion=1  solusi=0.8333  
+Iterasion=2  solusi=0.8167  
+Iterasion=3  solusi=0.8165  
+Iterasion=4  solusi=0.8165  
+Solusi Konvergence
+Case 4
+x=0.8165,y=0.75,f=2.2137
+theta_1=2.7668,theta_2=4.3509
+\end{lstlisting}
+\end{document}

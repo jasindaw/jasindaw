@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, left=2.00cm, right=2.00cm, bottom=2.00cm, top=2.00cm]{geometry}
+%\usepackage[a4paper, total={6.5in, 9.5in}]{geometry}
+\usepackage{authblk}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{enumitem}
+
+\title{\textbf{Rangkuman Tugas EMPB}}
+\author{\textbf{Jasinda Wijdannysa (5001201147)}}
+\affil{Departemen Fisika, Institut Teknologi Sepuluh Nopember}
+\date{May 2023}
+
+\begin{document}
+
+\maketitle
+
+\section*{Soal}
+\begin{enumerate}
+    \item \textbf{Terangkan pemahaman anda tentang Teori Dinamo!}
+    \subitem Dalam Bidang Geofisika, Teori Dinamo adalah teori yang menjelaskan medan magnet utama bumi. Istilah "Dinamo" di sini berarti sama seperti cara kerja dinamo yang dapat membangkitkan diri sendiri (\textit{self-exciting}). Dalam mekanisme kerja dinamo, diasumsikan gerakan fluida di inti luar bumi dapat menggerakkan material penghantar berupa besi cair yang melintasi medan magnet lemah yang telah ada sebelumnya, sehingga menghasilkan arus listrik. Arus listrik akan menghasilkan medan magnet pula yang akan berinteraksi dengan gerakan fluida untuk menciptakan medan magnet sekunder. Panas pada inti bumi berasal dari peluruhan radioaktif yang akan mengakibatkan gerakan konvektif. Kedua medan tersebut (listrik dan magnet) akan menghasilkan medan yang lebih kuat daripada medan aslinya dan terletak di sepanjang sumbu rotasi Bumi.
+    \item \textbf{Bagaimana proses terjadinya medan magnetik bumi sehingga dapat digunakan untuk eksplorasi?}
+    \subitem Medan magnet bumi terbentuk dari gesekan lapisan besi dan nikel cair yang ada di bagian luar inti bumi di kedalaman 3000 km dari permukaan bumi. Besi cair panas ini akan berputar-putar hingga menimbulkan arus listrik dan menghasilkan medan magnet bumi. Medan magnet terdapat pada seluruh lapisan bumi sampai ketinggian 600.000 km dari permukaan bumi. Teori yang menjelaskan tentang pembentukan medan magnetik bumi adalah Teori Dinamo. Eksplorasi terkait medan magnet bumi dilakukan bukan hanya untuk mengukur perubahan tingkat medan magnet di suatu wilayah saja, namun juga untuk mengetahui adanya anomali yang terdapat pada suatu wilayah. Anomali ini yang digunakan untuk pengukuran parameter geofisika lebih lanjut.
+    
+    \item \textbf{Sebutkan dan jelaskan tentang 3 sumber medan magnetik bumi!}
+    \begin{enumerate}[label=\alph*.]
+        \item Medan Magnet Utama (\textit{Main Field})
+        \subitem Merupakan medan magnet yang bersumber dari dalam bumi dan merupakan sumber medan magnet yang paling besar. Medan magnet utama ini berasal dari arus listrik mengalir pada besi cair dalam inti bumi.
+        \item Medan Magnet Luar Bumi
+        \subitem Merupakan medan magnet yang berasal dari luar bumi yang memiliki nilai medan magnet lebih kecil, atau dapat disebut dengan \textit{noise}
+        \item Medan Magnet Spatial
+        \subitem Merupakan medan magnet yang berasal dari anomali magnetik lokal pada kerak bumi, biasa disebut dengan medan magnet target.
+        \end{enumerate}
+    \item \textbf{Sebutkan dan jelaskan aplikasi metode magnetik bumi!}
+    \subitem Metode magnetik banyak digunakan sebagai metode untuk eksplorasi minyak bumi, gas bumi, dan batuan mineral yang bekerja berdasarkan sifat magnetik batuan bawah permukaan. Selain itu, metode magnetik juga digunakan unutk menentukan struktur geologi seperti sesar, lipatan, intrusi batuan beku, dan reservoir geothermal yang bekerja berdasarkan pengukuran variasi kecil intensitas medan magnet di permukaan bumi. Metode magnetik ini lebih banyak digunakan untuk survei panas bumi karena proses akuisisi data yang tidak serumit metode gravity dan seismik.
+    \item \textbf{Sebutkan dan jelaskan koreksi-koreksi apa saja yang harus dilakukan pada eksplorasi metode magnetik}
+    \begin{enumerate}[label=\alph*.]
+        \item Koreksi Harian
+        \subitem Koreksi harian (\textit{diurnal correction}) merupakan penyimpangan nilai medan magnetik bumi akibat adanya perbedaan waktu dan efek radiasi matahari dalam satu hari. Koreksi diurnal dapat dilakukan dengan menggunakan persamaan berikut.
+        \[\Delta H = H_{total} \pm \Delta H_{harian}\]
+        \item Koreksi IGRF
+        \subitem IGRF merupakan singkatan dari International Magnetic Reference Field, yaitu suatu acuan medan magnetik internasional. Nilai IGRF merupakan nilai kuat medan magnetik utama bumi (\(H_0\)) yang merupakan nilai yang ikut terukur ketika melakukan pengukuran medan magnetik di permukaan bumi. Nilai IGRF ini memiliki nilai paling besar dalam survei magnetik, sehingga perlu dilakukan koreksi untuk menghilangkannya. Koreksi IGRF dilakukan karena nilai yang menjadi subyek pengukuran magnetik adalah anomali medan magnetik (\(\Delta H_{r0}\)). Koreksi IGRF dapat dilakukan dengan persamaan sebagai berikut.
+        \[\Delta H = H_{total} \pm \Delta H_{harian} \pm H_{0}\]
+        di mana \(H_{0} = \ IGRF\)
+        \item Koreksi Topografi
+        \subitem Koreksi topografi dilakukan jika pengaruh topografi dalam survei magnetik sangat kuat. Koreksi topografi dappat dilakukan dengan membangun suatu model topografi menggunakan pemodelan beberapa prisma segiempat. Pemodelan yang dilakukan juga harus mengetahui nilai suseptibilitas magnetik (k) dari batuan topografi yang diteliti, sehingga model topografi yang dibuat dapat menghasilkan nilai anomali medan magnetik (\(\Delta H_{top}\)) sesuai dengan fakta. Lalu, persamaan koreksi topografi setelah dilakukan koreksi harian dan IGRF dapat dituliskan sebagai berikut.
+        \[\Delta H = \ H_{total} \pm \Delta H_{harian} - H_0 - H_{top}\]
+        \item Koreksi Efek Regional
+        \subitem Umumnya data anomali medan magnetik selalu bercampur dengan anomali magnetik lain yang berasal dari sumber yang sangat dalam dan luas di dalam permukaan bumi. Anomali magnetik ini yang disebut dengan anomali magnetik regional. Metode yang dapat digunakan untuk memperoleh anomali regional adalah metode pengangkatan ke atas (\textit{upward continuation}), yang merupakan proses transformasi data medan potensial dari suatu bidang datar ke bidang datar lainnya yang lebih tinggi.
+    \end{enumerate}
+    \item Apa saja yang mempengaruhi nilai medan magnetik bumi?
+    \subitem Medan magnet bumi  terkarakterisasi oleh parameter fisis atau disebut juga elemen medan magnet bumi, yaitu sebagai berikut.
+    \begin{itemize}
+        \item Deklinasi (D), merupakan sudut antara utara magnetik dengan komponen horizontal yang dihitung dari utara menuju timur
+        \item Inklinasi (I), merupakan sudut antara medan magnetik total dengan bidang horizontal yang dihitung dari bidang horizontal menuju bidang vertikal ke bawah
+        \item Intensitas Horizontal (H), merupakan besar dari medan magnetik total pada bidang horizontal
+        \item Medan magnetik total (F), merupakan esar dari vektor magnetik total
+    \end{itemize}
+    \item Apakah anomali magnetik bumi dapat berupa "monopole"? jelaskan!
+    \subitem Sampai saat ini, belum dapat ditemukan monopole pada medan magnetik. Medan magnet tercipta karena adanya dipole, kutub utara dan selatan, dan tidak dapat tercipta jika hanya terdapat satu kutub saja, atau monopole. Oleh karena itu, adanya monopole medan magnetik untuk saat ini masih belum dapat dibuktikan keberadaannya.
+\end{enumerate}
+
+
+\end{document}

@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Jasinda
-- 👀 I’m interested in Physics, Geoscience, Geophysics, and Tex.
+- 👀 I’m interested in Physics, Geoscience, Geophysics, and TeX.
 - 🌱 I’m currently learning Physics
 - 📫 Go find me on Instagram @syncthesis to reach me
 
